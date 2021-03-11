@@ -2,7 +2,7 @@
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.bulkInsert('avmaint', [{
+    await queryInterface.bulkInsert('maintenance_dev', [{
     
     acmodel: "A35",
     engmodel: "O-470",
@@ -11,7 +11,9 @@ module.exports = {
     smoh: 600,
     annualinsp: true,
     awdirectives: true,
-    damagehist: false
+    damagehist: false,
+    createdAt: "2020-03-10",
+    updatedAt: "2021-03-10"
   },
   {
     acmodel: "C172",
@@ -21,7 +23,9 @@ module.exports = {
     smoh: 1000,
     annualinsp: true,
     awdirectives: true,
-    damagehist: false
+    damagehist: false,
+    createdAt: "2019-03-10",
+    updatedAt: "2021-03-10"
   },
   {
     acmodel: "C150",
@@ -31,7 +35,9 @@ module.exports = {
     smoh: 2000,
     annualinsp: true,
     awdirectives: true,
-    damagehist: true
+    damagehist: true,
+    createdAt: "2018-03-10",
+    updatedAt: "2021-03-10"
   },
   {
     acmodel: "C195",
@@ -41,7 +47,9 @@ module.exports = {
     smoh: 1800,
     annualinsp: true,
     awdirectives: true,
-    damagehist: true
+    damagehist: true,
+    createdAt: "2017-03-10",
+    updatedAt: "2021-03-10"
   },
   {
     acmodel: "C180",
@@ -51,7 +59,9 @@ module.exports = {
     smoh: 2200,
     annualinsp: true,
     awdirectives: true,
-    damagehist: true
+    damagehist: true,
+    createdAt: "2016-03-10",
+    updatedAt: "2021-03-10"
   },
   {
     acmodel: "PA28",
@@ -61,7 +71,9 @@ module.exports = {
     smoh: 2200,
     annualinsp: true,
     awdirectives: true,
-    damagehist: false
+    damagehist: false,
+    createdAt: "2015-03-10",
+    updatedAt: "2021-03-10"
   },
   {
     acmodel: "J3",
@@ -71,7 +83,9 @@ module.exports = {
     smoh: 1500,
     annualinsp: true,
     awdirectives: true,
-    damagehist: true
+    damagehist: true,
+    createdAt: "2014-03-10",
+    updatedAt: "2021-03-10"
   },
   {
     acmodel: "M20",
@@ -81,9 +95,10 @@ module.exports = {
     smoh: 700,
     annualinsp: true,
     awdirectives: true,
-    damagehist: false
+    damagehist: false,
+    createdAt: "2013-03-10",
+    updatedAt: "021-03-10"
   },
-
 ], {});
   },
 
