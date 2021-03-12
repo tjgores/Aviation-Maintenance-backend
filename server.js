@@ -36,7 +36,7 @@ app.use(bodyParser.json());
 // }
 
 // SET THIS UP for Routes
-// app.use('/avmaint', routes.avmaint);
+   app.use('/avmaint', routes.avmaint);
 // app.use('/city', routes.city);
 // app.use('/post/all', routes.post);
 // app.use('/post/city', routes.post);
