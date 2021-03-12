@@ -1,3 +1,3 @@
 module.exports = {
-//    avmaint: require('./avmaint'),
+   avmaint: require('./avmaint'),
 }

@@ -23,7 +23,7 @@ const getAvmaintById = (req, res) => {
     if(req.query.sorted === 'asc')
         sort = 'ASC';
     
-    City.findByPk(req.params.avmaint, {
+    Avmaint.findById(req.params.avmaint, {
         include: [
             {
                 model: Avmaint,

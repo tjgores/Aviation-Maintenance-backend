@@ -15,7 +15,7 @@ const db = {};
 dotenv.config()
 const { DB_HOST, DB_FORCE_RESTART } = process.env;
 
-const sequelize = new Sequelize(DB_NAME, config);
+// const sequelize = new Sequelize(DB_NAME, config);
 
 fs
   .readdirSync(__dirname)
@@ -25,19 +25,19 @@ fs
                         && (file.slice(-3) === '.js');
       return returnFile;
   })
-  .forEach((file) => {
-      const model = require(path.join(__dirname, file))(sequelize, DataTypes)
-      db[model.name] = model;
-  });
+//   .forEach((file) => {
+//       const model = require(path.join(__dirname, file))(sequelize, DataTypes)
+//       db[model.name] = model;
+//   });
 
-Object.keys(db).forEach(modelName => {
-  if (db[modelName].associate) {
-    db[modelName].associate(db);
-  }
-});
+// Object.keys(db).forEach(modelName => {
+//   if (db[modelName].associate) {
+//     db[modelName].associate(db);
+//   }
+// });
 
-db.sequelize = sequelize;
-db.Sequelize = Sequelize;
+// db.sequelize = sequelize;
+// db.Sequelize = Sequelize;
 
 const sequelizeOptions = { logging: console.log, };
 
@@ -46,10 +46,10 @@ if (DB_FORCE_RESTART === 'true' && process.env.ENV !== 'production') {
 sequelizeOptions.force = true;
 }
  
-sequelize.sync(sequelizeOptions)
-.catch((err) => {
-    console.log(err);
-    process.exit();
-});
+// sequelize.sync(sequelizeOptions)
+// .catch((err) => {
+//     console.log(err);
+//     process.exit();
+// });
 
 module.exports = db;
