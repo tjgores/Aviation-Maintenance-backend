@@ -1,29 +1,33 @@
 'use strict';
 
+const dotenv = require('dotenv');
 const fs = require('fs');
 const path = require('path');
-const Sequelize = require('sequelize');
+const { Sequelize, Datatypes} = require('sequelize');
 const basename = path.basename(__filename);
 const env = process.env.NODE_ENV || 'development';
 const config = require(__dirname + '/../config/config.json')[env];
 
+const filebasename = path.basename(__filename);
 const db = {};
 
-let sequelize;
-if (config.use_env_variable) {
-  sequelize = new Sequelize(process.env[config.use_env_variable], config);
-} else {
-  sequelize = new Sequelize(config.database, config);
-}
+// Get env var from .env
+dotenv.config()
+const { DB_HOST, DB_FORCE_RESTART } = process.env;
+
+const sequelize = new Sequelize(DB_NAME, config);
 
 fs
   .readdirSync(__dirname)
-  .filter(file => {
-    return (file.indexOf('.') !== 0) && (file !== basename) && (file.slice(-3) === '.js');
+  .filter((file) => {
+      const returnFile = (file.indexOf('.') !== 0) 
+                        && (file !== filebasename)
+                        && (file.slice(-3) === '.js');
+      return returnFile;
   })
-  .forEach(file => {
-    const model = require(path.join(__dirname, file))(sequelize, Sequelize.DataTypes);
-    db[model.name] = model;
+  .forEach((file) => {
+      const model = require(path.join(__dirname, file))(sequelize, DataTypes)
+      db[model.name] = model;
   });
 
 Object.keys(db).forEach(modelName => {
@@ -34,5 +38,18 @@ Object.keys(db).forEach(modelName => {
 
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
+
+const sequelizeOptions = { logging: console.log, };
+
+// Removes all tables and recreates them (only available if env is not in production)
+if (DB_FORCE_RESTART === 'true' && process.env.ENV !== 'production') {
+sequelizeOptions.force = true;
+}
+ 
+sequelize.sync(sequelizeOptions)
+.catch((err) => {
+    console.log(err);
+    process.exit();
+});
 
 module.exports = db;

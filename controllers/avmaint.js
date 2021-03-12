@@ -18,7 +18,36 @@ const getAll = (req, res) => {
     })
 }
 
+const getAvmaintById = (req, res) => {
+    let sort = 'DESC';
+    if(req.query.sorted === 'asc')
+        sort = 'ASC';
+    
+    City.findByPk(req.params.avmaint, {
+        include: [
+            {
+                model: Avmaint,
+                attributes: ['id', 'acmodel', 'engmodel', 'ttaf'],
+                
+            }
+        ],
+        order: [
+            [{model: Avmaint}, 'createdAt', sort]
+        ]
+    })
+    .then(foundAvmaint => {
+        if(foundAvmaint === null){
+            res.status(constants.BAD_REQUEST).send('ERROR: Incorrect Avmaint Id')
+        }else{
+            res.status(constants.SUCCESS).json(foundAvmaint)
+        }
+    })
+    .catch(err => {
+        res.status(constants.INTERNAL_SERVER_ERROR).send(`ERROR: ${err}`);
+    })
+}
+
 module.exports = {
     getAll,
-    getCityById
+    getAvmaintById
 }
