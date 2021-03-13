@@ -24,7 +24,7 @@ const getAvmaintById = (req, res) => {
         include: [
             {
                 model: Avmaint,
-                attributes: ['id', 'acmodel', 'engmodel', 'ttaf'],
+                attributes: ['id', 'acmodel', 'engmodel', 'ttaf', 'ttsn', 'smoh', 'annualinsp', 'awdirectives', 'damagehist'],
                 
             }
         ],
