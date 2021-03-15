@@ -4,7 +4,7 @@ const getAll = (req, res) => {
     console.log(Avmaint);
     Avmaint.findAll()
     .then(avmaints => {
-        console.log(avmaints)
+ //       console.log(avmaints)
 //      use the below line res.json(cities) to make your data work like an
 //      API built like project 2 except changing the way it works in
 //      you controller. This allows you to control the format of the API
